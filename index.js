@@ -7,7 +7,7 @@ const server = express()
 
 server.use(express.json())
 server.use(cors())
-// server.use(express.static(path.join(__dirname, 'client/build'))) // static assets
+server.use(express.static(path.join(__dirname, 'client/build'))) // static assets
 
 console.log(process.env.USER) 
 console.log(process.env.SHELL)
@@ -20,10 +20,10 @@ const PORT = process.env.PORT || 3000
 
 console.log('port is -> ', PORT)
 
-// server.get('/', (req, res) => {
-//   // sending back index.html
-//   res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
-// })
+server.get('/', (req, res) => {
+  // sending back index.html
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+})
 
 server.get('/api', (req, res) => {
   res.json({ message: `${process.env.COHORT} ROCKS` })
